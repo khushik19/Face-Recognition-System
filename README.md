@@ -105,7 +105,7 @@ The FRS is a web-based application. Access it by navigating to the designated dr
 
 **Main Interface:**
 
-1.  Upon accessing the URL, you will be presented with the main interface.
+1.  Upon accessing the prototype. 
 2.  The live webcam feed will be displayed.
 3.  To register a new employee, click the "Register New Employee" button. You will be prompted for admin authentication.
 4.  To enter as a visitor, click the "Enter as Visitor" button and follow the on-screen prompts.
@@ -137,4 +137,6 @@ The FRS is a web-based application. Access it by navigating to the designated dr
 *   **Face Recognition Issues:** If the system is not recognizing faces, ensure that the lighting is adequate and that the individual's face is clearly visible. Contact the system administrator if you continue to experience issues.
 *   **Login Problems:** If you are having trouble logging in, contact the system administrator.
 
-**[Admin ID: 123456]**
+
+
+**[Admin ID for accessing administrative functions: 123456]**
