@@ -1,4 +1,4 @@
-# Face Recognition System for Cosmos Air Pvt Ltd
+   # Face Recognition System for Cosmos Air Pvt Ltd
 
 This document describes the Face Recognition System (FRS) developed for Cosmos Air Pvt Ltd. The FRS is a comprehensive web-based solution designed to manage employee and visitor entry, track attendance, and provide administrative access to employee data and entry logs.
 
@@ -99,7 +99,7 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 
 **Accessing the System:**
 
-The FRS is a web-based application. Access it by navigating to the designated URL provided by the system administrator. This URL will typically be an internal network address or a publicly accessible address if remote access is enabled. (e.g., `http://frs.cosmosair.com` or `http://192.168.1.100:5000`)
+The FRS is a web-based application. Access it by navigating to the designated drive link provided by the system administrator. https://drive.google.com/drive/folders/1RwMTdhzguMi1QpgO9SjEuAf1gnVGpbSd?usp=drive_link
 
 **Using the System:**
 
@@ -136,3 +136,5 @@ The FRS is a web-based application. Access it by navigating to the designated UR
 *   **Camera Access:** Ensure that your browser has permission to access your webcam.
 *   **Face Recognition Issues:** If the system is not recognizing faces, ensure that the lighting is adequate and that the individual's face is clearly visible. Contact the system administrator if you continue to experience issues.
 *   **Login Problems:** If you are having trouble logging in, contact the system administrator.
+
+**[Admin ID: 123456]**
