@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Records</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <style>
+    table {
+      border-collapse: collapse; /* Important: Collapse borders to prevent double borders */
+      width: 50%; /* Or whatever width you want */
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc; /* 1px thick, light gray border */
+      padding: 8px; /* Add some padding for readability */
+      text-align: left; /* Align text to the left (optional) */
+    }
+  </style>
+  <body>
+    <h1>Attendance Records</h1>
+    <table border:1px id="attendance-table">
+      <tr>
+        <th><font face="Serif" size="5" color="black">Name</font></th>
+        <th><font face="Serif" size="5" color="black">Entry Time</font></th>
+      </tr>
+    </table>
+
+    <script>
+      function fetchAttendance() {
+        fetch("/get_attendance")
+          .then((response) => response.json())
+          .then((data) => {
+            let table = document.getElementById("attendance-table");
+            table.innerHTML = "<tr><th>Name</th><th>Entry Time</th></tr>"; // Reset table
+            data.attendance.forEach((record) => {
+              let row = table.insertRow();
+              row.insertCell(0).innerText = record[0];
+              row.insertCell(1).innerText = record[1];
+            });
+          })
+          .catch((error) => console.error("Error fetching attendance:", error));
+      }
+
+      fetchAttendance(); // Fetch data when page loads
+      setInterval(fetchAttendance, 10000); // Refresh every 10 seconds
+    </script>
+  </body>
+</html>
