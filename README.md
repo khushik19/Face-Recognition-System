@@ -68,7 +68,7 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 *   Admin ID protection of sensitive functions.
 *   Secure database connections.
 *   Protected employee data access.
-*   Encrypted data storage. (Note: Specific encryption details should be documented elsewhere.)
+*   Encrypted data storage. 
 
 ## Future Enhancement Possibilities
 
@@ -83,9 +83,9 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 
 *   OpenCV for face recognition.
 *   MySQL Connector for Python.
-*   Web framework (Flask/Django) *(Specify which one is used)*.
-*   JavaScript libraries for animations *(Specify which ones are used)*.
-*   CSS framework for responsive design *(Specify which one is used)*.
+*   Web framework (Flask).
+*   JavaScript libraries for animations.
+*   CSS framework for responsive design.
 
 ## Maintenance Requirements
 
