@@ -1,1 +1,0 @@
-SELECT * FROM face_recognition.attendance;
