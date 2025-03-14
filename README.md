@@ -1,4 +1,4 @@
-   # Face Recognition System for Cosmos Air Pvt Ltd
+# Face Recognition System for Cosmos Air Pvt Ltd
 
 This document describes the Face Recognition System (FRS) developed for Cosmos Air Pvt Ltd. The FRS is a comprehensive web-based solution designed to manage employee and visitor entry, track attendance, and provide administrative access to employee data and entry logs.
 
