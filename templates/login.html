@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login to Register</title>
+    <style>
+      body {
+        background-image: url("/static/images/background.png");
+        background-size: 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #003990;
+        margin: 0;
+        padding: 0;
+      }
+
+      .leftsection {
+        float: left;
+        width: 61%;
+      }
+
+      .rightsection {
+        float: right;
+        width: 39%;
+        position: relative;
+        top: 100px;
+        right: 100px;
+      }
+
+      .camera {
+        width: 633px;
+        height: 372px;
+        object-fit: cover; /* Ensures the image fills the area without distortion */
+        position: relative;
+        top: 86px;
+        left: 105px;
+      }
+
+      img#video-stream {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Face Recognition System</h1>
+
+    <div class="leftsection">
+      <!-- Video Feed -->
+      <img
+        src="{{ url_for('video_feed') }}"
+        alt="Live Video Feed"
+        class="camera"
+      />
+    </div>
+    <div class="rightsection">
+      <h2>Login to Register dashboard</h2>
+      <form action="/login_admin" method="POST">
+        <div class="mb-3">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
