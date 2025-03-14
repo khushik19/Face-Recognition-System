@@ -131,7 +131,8 @@ https://drive.google.com/drive/folders/1RwMTdhzguMi1QpgO9SjEuAf1gnVGpbSd?usp=dri
 3.  Fill out the employee registration form, including the employee's name.
 4.  Capture the employee's photo using the webcam.  ![FRS Registration 1 ](https://github.com/user-attachments/assets/3a3242c3-a773-4b7a-b606-f9317a26e989)
 
-5.  The system will generate a unique Employee ID.
+5.  The system will generate a unique Employee ID.  ![FRS Random No](https://github.com/user-attachments/assets/b87e2ffa-abbb-416b-9db1-6be23a0bd070)
+
 6.  The new employee's data will be added to the database.
 
 **Visitor Entry:**
