@@ -133,7 +133,8 @@ https://drive.google.com/drive/folders/1RwMTdhzguMi1QpgO9SjEuAf1gnVGpbSd?usp=dri
 
 5.  The system will generate a unique Employee ID.  ![FRS Random No](https://github.com/user-attachments/assets/b87e2ffa-abbb-416b-9db1-6be23a0bd070)
 
-6.  The new employee's data will be added to the database.
+6.  The new employee's data will be added to the database.  ![FRS Registered](https://github.com/user-attachments/assets/2707accb-f713-4c99-818c-236fbc62e38e)
+
 
 **Visitor Entry:**
 
