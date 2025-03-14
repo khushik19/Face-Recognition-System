@@ -1,0 +1,21 @@
+services:
+  # A web service
+  - type: web
+    name: face-recognition-attendance
+    env: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn app:app --worker-class eventlet --workers 1 --bind 0.0.0.0:$PORT
+    plan: standard # Use standard plan for more resources
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.4
+      - key: DATABASE_URL
+        sync: false # Will be manually set in Render dashboard
+      - key: RENDER
+        value: true
+    healthCheckPath: /health
+    autoDeploy: true
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1 
