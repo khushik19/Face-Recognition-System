@@ -28,7 +28,7 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 
 ## Core Features
 
-1.  **Main Interface**
+**Main Interface**
     *   Live Webcam Feed display
     *   Real-time Face Recognition processing
     *   Display of Employee Information when registered:
