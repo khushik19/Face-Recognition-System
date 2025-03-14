@@ -1,13 +1,16 @@
+# Requirements for deploying on Render.com
+numpy==1.24.3
+pandas==1.5.3
 Flask==2.3.3
 Werkzeug==2.3.7
-mysql-connector-python==8.1.0
-opencv-python==4.8.1.78
+opencv-python-headless==4.8.1.78  # Use headless version for server deployment
+Pillow==10.0.1
+gunicorn==21.2.0  # Required for production deployment on Render
 face-recognition==1.3.0
 face-recognition-models==0.3.0
-numpy==1.24.3
+dlib==19.24.2  # Render will build this from source
+mysql-connector-python==8.1.0
 flask-socketio==5.3.5
 python-socketio==5.9.0
-dlib==19.24.2
-Pillow==10.0.1
 python-engineio==4.7.1
 eventlet==0.33.3 
