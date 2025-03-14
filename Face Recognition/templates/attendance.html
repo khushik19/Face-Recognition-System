@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Records</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-image: url("/static/images/background.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: Arial, sans-serif;
+        background-color: #003990;
+        margin: 0;
+        padding: 20px;
+        color: white;
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding-left: 23px;
+        padding-right: 23px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        overflow: hidden;
+        margin-bottom: 20px;
+        color: rgba(33, 33, 33, 0.944);
+      }
+
+      .input-group {
+        display: flex;
+        width: 30%;
+        height: 35px;
+        margin-right: 5%;
+      }
+      .table {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .table th {
+        background-color: #003990;
+        color: white;
+        font-weight: bold;
+      }
+
+      .search-container {
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background-color: #003990;
+        border-color: #003990;
+      }
+
+      .btn-primary:hover {
+        background-color: #002970;
+        border-color: #002970;
+      }
+
+      .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+      }
+
+      .pagination {
+        margin-top: 20px;
+        justify-content: center;
+      }
+
+      .back-btn {
+        margin-top: 20px;
+      }
+
+      .visitor-row {
+        background-color: #fff3cd;
+      }
+
+      .date-filter {
+        width: 50%;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .date-filter label {
+        margin-bottom: 0;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 768px) {
+        .search-container {
+          flex-direction: column;
+        }
+
+        .date-filter {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4 mb-4">Attendance Records</h1>
+
+      <div class="search-container">
+        <div class="input-group">
+          <input
+            type="text"
+            id="search-input"
+            class="form-control"
+            placeholder="Search by name..."
+          />
+          <button class="btn btn-primary" id="search-btn">Search</button>
+          
+        <button class="btn btn-secondary" id="reset-btn">Reset</button>
+        </div>
+      
+
+      <div class="date-filter">
+        <label for="date-from">From:</label>
+        <input
+          type="date"
+          id="date-from"
+          class="form-control"
+          style="width: auto"
+        />
+
+        <label for="date-to">To:</label>
+        <input
+          type="date"
+          id="date-to"
+          class="form-control"
+          style="width: auto"
+        />
+
+        <button class="btn btn-primary" id="filter-date-btn">Filter</button>
+      </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-hover" id="attendance-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Entry Time</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data will be populated here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary" id="export-btn">Export to CSV</button>
+        <a href="/" class="btn btn-secondary back-btn">Back to Home</a>
+      </div>
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination">
+          <!-- Pagination will be added here -->
+        </ul>
+      </nav>
+    </div>
+
+    <script>
+      // Global variables
+      let allAttendanceData = [];
+      let filteredData = [];
+      const itemsPerPage = 10;
+      let currentPage = 1;
+
+      // Initialize date inputs with today's date
+      const today = new Date();
+      const todayStr = today.toISOString().split("T")[0];
+      document.getElementById("date-to").value = todayStr;
+
+      // Set "from" date to 7 days ago
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(today.getDate() - 7);
+      document.getElementById("date-from").value = sevenDaysAgo
+        .toISOString()
+        .split("T")[0];
+
+      // Fetch attendance data
+      function fetchAttendance() {
+        fetch("/get_attendance")
+          .then((response) => response.json())
+          .then((data) => {
+            allAttendanceData = data.attendance.map((record) => ({
+              name: record[0],
+              time: record[1],
+              type: record[0] === "Visitor" ? "Visitor" : "Employee",
+            }));
+
+            applyFilters();
+          })
+          .catch((error) => console.error("Error fetching attendance:", error));
+      }
+
+      // Apply filters (search and date)
+      function applyFilters() {
+        const searchTerm = document
+          .getElementById("search-input")
+          .value.toLowerCase();
+        const dateFrom = document.getElementById("date-from").value;
+        const dateTo = document.getElementById("date-to").value;
+
+        filteredData = allAttendanceData.filter((record) => {
+          // Search filter
+          const nameMatch = record.name.toLowerCase().includes(searchTerm);
+
+          // Date filter
+          let dateMatch = true;
+          if (dateFrom || dateTo) {
+            const recordDate = new Date(record.time);
+
+            if (dateFrom) {
+              const fromDate = new Date(dateFrom);
+              fromDate.setHours(0, 0, 0, 0);
+              if (recordDate < fromDate) dateMatch = false;
+            }
+
+            if (dateTo) {
+              const toDate = new Date(dateTo);
+              toDate.setHours(23, 59, 59, 999);
+              if (recordDate > toDate) dateMatch = false;
+            }
+          }
+
+          return nameMatch && dateMatch;
+        });
+
+        // Reset to first page when filters change
+        currentPage = 1;
+        renderTable();
+        renderPagination();
+      }
+
+      // Render table with current page data
+      function renderTable() {
+        const tableBody = document.querySelector("#attendance-table tbody");
+        tableBody.innerHTML = "";
+
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const pageData = filteredData.slice(startIndex, endIndex);
+
+        if (pageData.length === 0) {
+          tableBody.innerHTML =
+            '<tr><td colspan="3" class="text-center">No records found</td></tr>';
+          return;
+        }
+
+        pageData.forEach((record) => {
+          const row = document.createElement("tr");
+          if (record.type === "Visitor") {
+            row.classList.add("visitor-row");
+          }
+
+          row.innerHTML = `
+            <td>${record.name}</td>
+            <td>${formatDateTime(record.time)}</td>
+            <td>${record.type}</td>
+          `;
+
+          tableBody.appendChild(row);
+        });
+      }
+
+      // Format date and time for display
+      function formatDateTime(dateTimeStr) {
+        const date = new Date(dateTimeStr);
+        return date.toLocaleString();
+      }
+
+      // Render pagination controls
+      function renderPagination() {
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+        // Previous button
+        const prevLi = document.createElement("li");
+        prevLi.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
+        prevLi.innerHTML =
+          '<a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+        prevLi.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+            renderPagination();
+          }
+        });
+        pagination.appendChild(prevLi);
+
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+          const li = document.createElement("li");
+          li.className = `page-item ${i === currentPage ? "active" : ""}`;
+          li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+          li.addEventListener("click", (e) => {
+            e.preventDefault();
+            currentPage = i;
+            renderTable();
+            renderPagination();
+          });
+          pagination.appendChild(li);
+        }
+
+        // Next button
+        const nextLi = document.createElement("li");
+        nextLi.className = `page-item ${
+          currentPage === totalPages ? "disabled" : ""
+        }`;
+        nextLi.innerHTML =
+          '<a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>';
+        nextLi.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderTable();
+            renderPagination();
+          }
+        });
+        pagination.appendChild(nextLi);
+      }
+
+      // Export to CSV
+      document.getElementById("export-btn").addEventListener("click", () => {
+        if (filteredData.length === 0) {
+          alert("No data to export");
+          return;
+        }
+
+        const csvContent = [
+          ["Name", "Entry Time", "Type"],
+          ...filteredData.map((record) => [
+            record.name,
+            record.time,
+            record.type,
+          ]),
+        ]
+          .map((row) => row.join(","))
+          .join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `attendance_${new Date().toISOString().split("T")[0]}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+
+      // Event listeners
+      document
+        .getElementById("search-btn")
+        .addEventListener("click", applyFilters);
+      document.getElementById("search-input").addEventListener("keyup", (e) => {
+        if (e.key === "Enter") applyFilters();
+      });
+
+      document.getElementById("reset-btn").addEventListener("click", () => {
+        document.getElementById("search-input").value = "";
+        applyFilters();
+      });
+
+      document
+        .getElementById("filter-date-btn")
+        .addEventListener("click", applyFilters);
+
+      // Initial data fetch
+      fetchAttendance();
+
+      // Refresh data every 30 seconds
+      setInterval(fetchAttendance, 30000);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
