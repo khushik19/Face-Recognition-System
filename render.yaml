@@ -3,8 +3,8 @@ services:
   - type: web
     name: face-recognition-attendance
     env: python
-    buildCommand: ./build.sh
-    startCommand: gunicorn app:app --worker-class eventlet --workers 1 --bind 0.0.0.0:$PORT
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: python -c "from app import app, socketio; socketio.run(app, host='0.0.0.0', port=int('$PORT'), debug=False, allow_unsafe_werkzeug=True)"
     plan: standard # Use standard plan for more resources
     envVars:
       - key: PYTHON_VERSION
@@ -12,7 +12,11 @@ services:
       - key: DATABASE_URL
         sync: false # Will be manually set in Render dashboard
       - key: RENDER
-        value: true
+        value: "true"
+      - key: PYTHONUNBUFFERED
+        value: "true"
+      - key: WEB_CONCURRENCY
+        value: "1"
     healthCheckPath: /health
     autoDeploy: true
     disk:
