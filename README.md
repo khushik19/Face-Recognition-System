@@ -17,7 +17,7 @@ This document describes the Face Recognition System (FRS) developed for Cosmos A
 
 ## Overview
 
-The FRS streamlines employee entry through facial recognition, automatically marking attendance and storing the data in a MySQL database. It also handles visitor entries, recording them as “Visitor entry” in the database. The system maintains entry logs and allows authorized administrators to add or remove employees from the recognition database and access attendance records.
+The FRS streamlines employee entry through facial recognition, automatically marking attendance and storing the data in a MySQL database. It also handles visitor entries, recording them as “Visitor entry” in the database. The system maintains entry logs and allows authorized administrators to add employees to the recognition database and access attendance records.
 
 ## Technical Stack
 
