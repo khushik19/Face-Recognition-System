@@ -39,6 +39,9 @@ The FRS streamlines employee entry through facial recognition, automatically mar
         *   Register New Employee
         *   Enter as Visitor
         *   View Entry Logs
+     
+   ![FRS Home](https://github.com/user-attachments/assets/20a61d01-69b4-4b01-a226-da14e35d87b9)
+
 
 ## Face Recognition Process
 
@@ -46,8 +49,10 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 2.  Processes each frame for face detection.
 3.  Compares detected face with the registered employee database.
 4.  On match:
-    *   Displays that the entry was marked.
-    *   Logs entry in the database.
+    *   Displays that the entry was marked.  ![FRS Entry Marked](https://github.com/user-attachments/assets/105c39fc-924b-49b5-9aba-d64ed50d2929)
+
+    *   Logs entry in the database.  ![FRS Admin Attendance 1](https://github.com/user-attachments/assets/b5e3394e-f51c-47cb-999c-c426603250b7)
+
 5.  On no match:
     *   Prompts for visitor entry or registration of employee.
 
@@ -111,30 +116,38 @@ https://drive.google.com/drive/folders/1RwMTdhzguMi1QpgO9SjEuAf1gnVGpbSd?usp=dri
 **Main Interface:**
 
 1.  Upon accessing the prototype. 
-2.  The live webcam feed will be displayed.
-3.  To register a new employee, click the "Register New Employee" button. You will be prompted for admin authentication.
+2.  The live webcam feed will be displayed.  ![FRS Home](https://github.com/user-attachments/assets/31e77cb2-e006-4046-8c89-da23ae7713aa)
+
+3.  To register a new employee, click the "Register New Employee" button. You will be prompted for admin authentication.  ![FRS Registration ](https://github.com/user-attachments/assets/e2e72b7e-4391-4dc2-a1a7-8ae5cad5280b)
+
 4.  To enter as a visitor, click the "Enter as Visitor" button and follow the on-screen prompts.
 5.  To view entry logs, click the "View Entry Logs" button. You may need admin privileges to access this feature.
 
 **Employee Registration:**
 
 1.  Click "Register New Employee."
-2.  Enter the correct Admin ID when prompted.
+2.  Enter the correct Admin ID when prompted.![Uploading FRS Registration .jpg…]()
+
 3.  Fill out the employee registration form, including the employee's name.
-4.  Capture the employee's photo using the webcam.
+4.  Capture the employee's photo using the webcam.  ![FRS Registration 1 ](https://github.com/user-attachments/assets/3a3242c3-a773-4b7a-b606-f9317a26e989)
+
 5.  The system will generate a unique Employee ID.
 6.  The new employee's data will be added to the database.
 
 **Visitor Entry:**
 
-1.  Click "Enter as Visitor."
-2.  Visitor entry will be logged into the database with time logs.
+1.  Click "Enter as Visitor.  "![FRS Home](https://github.com/user-attachments/assets/0b148cf4-6a5a-4cb2-b458-919cf3beae35)
+ 
+2.  Visitor entry will be logged into the database with time logs.  ![FRS Admin Attendance 1](https://github.com/user-attachments/assets/dac6c0a9-0f52-4f4b-a8ca-4930abd25ba8)
+
 
 **Viewing Entry Logs:**
 
 1.  Click "View Entry Logs."
-2.  Enter Admin credentials.
-3.  The system will display the entry logs, including employee/visitor entry times and other relevant information.
+2.  Enter Admin credentials.  ![FRS Admin Attendance'](https://github.com/user-attachments/assets/04a26754-f7ba-4a26-ace2-b849984f7334)
+
+3.  The system will display the entry logs, including employee/visitor entry times and other relevant information.  ![FRS Admin Attendance 1](https://github.com/user-attachments/assets/9f739809-9af3-4fb0-a6f9-2d27bc65460e)
+
 
 **Troubleshooting:**
 
