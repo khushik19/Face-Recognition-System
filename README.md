@@ -31,7 +31,7 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 1.  **Main Interface**
     *   Live Webcam Feed display
     *   Real-time Face Recognition processing
-    *   Display of matched Employee Information when face is recognised:
+    *   Display of Employee Information when registered:
         *   Employee Photograph
         *   Employee Name
         *   Employee ID
@@ -46,8 +46,7 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 2.  Processes each frame for face detection.
 3.  Compares detected face with the registered employee database.
 4.  On match:
-    *   Retrieves Employee data.
-    *   Displays Information (Photograph, Name, ID).
+    *   Displays that the entry was marked.
     *   Logs entry in the database.
 5.  On no match:
     *   Prompts for visitor entry or registration of employee.
@@ -59,9 +58,14 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 3.  Data collection:
     *   Employee name entry.
     *   Live Photo capture via the webcam.
-    *   Unique employee ID generation.
+    *   Unique employee ID generation via random number generator.
 4.  New employee’s data gets updated in the MySQL Database.
 5.  Return to the main interface.
+
+## View Attendance Process
+
+1.  System requests Admin authentication.
+2.  If correct admin ID is entered, the entry log is displayed.
 
 ## Security Features
 
@@ -99,7 +103,8 @@ The FRS streamlines employee entry through facial recognition, automatically mar
 
 **Accessing the System:**
 
-The FRS is a web-based application. Access it by navigating to the designated drive link provided by the system administrator. https://drive.google.com/drive/folders/1RwMTdhzguMi1QpgO9SjEuAf1gnVGpbSd?usp=drive_link
+The FRS is a web-based application. Access it by navigating to the designated drive link provided.
+https://drive.google.com/drive/folders/1RwMTdhzguMi1QpgO9SjEuAf1gnVGpbSd?usp=drive_link
 
 **Using the System:**
 
