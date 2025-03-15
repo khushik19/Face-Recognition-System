@@ -126,7 +126,8 @@ https://drive.google.com/drive/folders/1RwMTdhzguMi1QpgO9SjEuAf1gnVGpbSd?usp=dri
 **Employee Registration:**
 
 1.  Click "Register New Employee."
-2.  Enter the correct Admin ID when prompted.![Uploading FRS Registration .jpg…]()
+2.  Enter the correct Admin ID when prompted.  ![FRS Registration ](https://github.com/user-attachments/assets/72306033-3140-4f20-bf56-e9a2cd829463)
+
 
 3.  Fill out the employee registration form, including the employee's name.
 4.  Capture the employee's photo using the webcam.  ![FRS Registration 1 ](https://github.com/user-attachments/assets/3a3242c3-a773-4b7a-b606-f9317a26e989)
